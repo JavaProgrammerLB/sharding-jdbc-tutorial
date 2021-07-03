@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: sharding-jdbc-spring-boot-mybatis
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    name: defaultDataSource
+    url: jdbc:mysql://localhost:3306/mybatis?serverTimezone=UTC
+    username: ${mysql_username}
+    password: ${mysql_password}
+
+server:
+  port: 8081
+
+mybatis:
+  mapper-locations: classpath:mappers/*xml
+  type-aliases-package: liubei.sharding_jdbc.spring_boot.mybatis.entity
+  configuration:
+    map-underscore-to-camel-case: on
+
+
