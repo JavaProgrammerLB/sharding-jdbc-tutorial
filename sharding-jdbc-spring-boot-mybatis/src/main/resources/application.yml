@@ -7,6 +7,37 @@ spring:
     url: jdbc:mysql://localhost:3306/mybatis?serverTimezone=UTC
     username: ${mysql_username}
     password: ${mysql_password}
+  shardingsphere:
+    datasource:
+      names: ds0, ds1
+      ds0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/shop_0?serverTimezone=UTC
+        username: ${mysql_username}
+        password: ${mysql_password}
+      ds1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/shop_1?serverTimezone=UTC
+        username: ${mysql_username}
+        password: ${mysql_password}
+    sharding:
+      tables:
+        shop_info:
+          actual-data-nodes: ds$->{0..1}.shop_info_$->{0..1}
+          table-strategy:
+            inline:
+              sharding-column: shop_id
+              algorithm-expression: shop_info_$->{shop_id % 2}
+          key-generator:
+            column: shop_id
+            type: SNOWFLAKE
+      binding-tables: shop_info
+      default-database-strategy:
+        inline:
+          sharding-column: shop_id
+          algorithm-expression: ds$->{shop_id % 2}
 
 server:
   port: 8081
@@ -15,6 +46,6 @@ mybatis:
   mapper-locations: classpath:mappers/*xml
   type-aliases-package: liubei.sharding_jdbc.spring_boot.mybatis.entity
   configuration:
-    map-underscore-to-camel-case: on
+    map-underscore-to-camel-case: true
 
 

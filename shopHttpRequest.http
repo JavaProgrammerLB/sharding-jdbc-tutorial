@@ -1,0 +1,66 @@
+POST http://localhost:{{port}}/shop
+Content-Type: application/json
+
+{
+  "shopName": "商店7",
+  "account": "123456789"
+}
+
+###
+
+POST http://localhost:{{port}}/shop
+Content-Type: application/json
+
+{
+  "shopName": "商店6",
+  "account": "12345678"
+}
+
+###
+POST http://localhost:{{port}}/shop
+Content-Type: application/json
+
+{
+  "shopName": "商店5",
+  "account": "1234567"
+}
+
+###
+POST http://localhost:{{port}}/shop
+Content-Type: application/json
+
+{
+  "shopName": "商店4",
+  "account": "123456"
+}
+
+###
+POST http://localhost:{{port}}/shop
+Content-Type: application/json
+
+{
+  "shopName": "商店3",
+  "account": "12345"
+}
+
+###
+
+POST http://localhost:{{port}}/shop
+Content-Type: application/json
+
+{
+  "shopName": "商店2",
+  "account": "1234"
+}
+
+###
+
+
+POST http://localhost:{{port}}/shop
+Content-Type: application/json
+
+{
+  "shopName": "商店1",
+  "account": "123"
+}
+
